@@ -58,6 +58,10 @@ var populatePoster = function(film) {
   posterCell.appendChild(filmImg);
 }
 
+var populateMap = function() {
+  var mainMap = new MapWrapper();
+}
+
 // var populateSoundtrackInfo = function(soundtrack) {
 //   var div = document.getElementById('soundtrack-info');
 //   var liName = document.createElement('li');
