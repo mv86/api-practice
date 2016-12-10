@@ -47,17 +47,20 @@ var populateFilmInfo = function(film) {
   ul.appendChild(liLanguage);
   ul.appendChild(liDirector);
   ul.appendChild(liAwards);
+  var filmImg = document.createElement('img');
+  filmImg.src = film.Poster;
+  filmInfoCell.appendChild(filmImg);
   filmInfoCell.appendChild(ul);
-  populatePoster(film);
+  // populatePoster(film);
   populateMap(film);
 }
 
-var populatePoster = function(film) {
-  var posterCell = document.getElementById('poster-cell');
-  var filmImg = document.createElement('img');
-  filmImg.src = film.Poster;
-  posterCell.appendChild(filmImg);
-}
+// var populatePoster = function(film) {
+//   var posterCell = document.getElementById('poster-cell');
+//   var filmImg = document.createElement('img');
+//   filmImg.src = film.Poster;
+//   posterCell.appendChild(filmImg);
+// }
 
 var populateMap = function(film) {
   var mapCell = document.getElementById('map-cell');
@@ -70,6 +73,7 @@ var populateMap = function(film) {
     var filmLocation = {lat: locationLat, lng: locationLng};
     console.log(filmLocation);
     var mainMap = new MapWrapper(mapCell, filmLocation, 3);
+    mainMap.addMarker(filmLocation);
   });
   
 }
