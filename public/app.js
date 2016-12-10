@@ -49,6 +49,7 @@ var populateFilmInfo = function(film) {
   ul.appendChild(liAwards);
   filmInfoCell.appendChild(ul);
   populatePoster(film);
+  populateMap(film);
 }
 
 var populatePoster = function(film) {
@@ -58,8 +59,19 @@ var populatePoster = function(film) {
   posterCell.appendChild(filmImg);
 }
 
-var populateMap = function() {
-  var mainMap = new MapWrapper();
+var populateMap = function(film) {
+  var mapCell = document.getElementById('map-cell');
+  // var map = document.getElementById('map');
+  var geo = new google.maps.Geocoder();
+
+  geo.geocode({'address': film.Country}, function (results) {
+    var locationLat = results[0].geometry.location.lat();
+    var locationLng = results[0].geometry.location.lng();
+    var filmLocation = {lat: locationLat, lng: locationLng};
+    console.log(filmLocation);
+    var mainMap = new MapWrapper(mapCell, filmLocation, 3);
+  });
+  
 }
 
 // var populateSoundtrackInfo = function(soundtrack) {
