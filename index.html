@@ -4,17 +4,26 @@
   <title></title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src='http://code.highcharts.com/highcharts.js'></script>
+  <script src="columnChart.js"></script>
   <script src='mapWrapper.js'> </script>
   <script src="app.js"></script>
 </head>
 <body>
-  <div id="film-info-cell">
-    <ul id="film-info-ul"></ul>
+  <select id="film-select">
+    <option>My Top 10 Films</object>
+      <option value="http://www.omdbapi.com/?t=volver&y=&plot=short&r=json">Volver</option>
+      <option value="http://www.omdbapi.com/?t=the+shawshank+redemption&y=&plot=full&r=json">The Shawshank Redemption</option>
+      <option value="http://www.omdbapi.com/?i=tt0120735&plot=short&r=json">Lock Stock & Two Smoking Barrels</option>
+    </select>
+    <div id="film-info-cell">
+      <img id="poster" src="">
+      <ul id="film-info-ul"></ul>
+    </div>
+    <div id="poster-cell"></div>
+    <div id="map-cell"></div>
+    <div id="graph-cell"></div>
   </div>
-  <div id="poster-cell"></div>
-  <div id="map-cell"></div>
-  <div id="graph-cell"></div>
-</div>
 </body>
 </html>
 
