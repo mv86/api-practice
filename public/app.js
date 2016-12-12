@@ -1,9 +1,18 @@
 var app = function() {
   var select = document.getElementById('film-select');
 
+  for (var film of top10Array) {
+    var option = document.createElement('option');
+    option.innerText = film.Title;
+    option.value = film.imdbCode;
+    select.appendChild(option);
+  }
+
     select.onchange = function() {
       var film = this.value;
-      makeRequest(film, requestCompleteFilm);
+      filmRequest = "http://www.omdbapi.com/?i=" + film + "&plot=short&r=json"
+      console.log(filmRequest)
+      makeRequest(filmRequest, requestCompleteFilm);
     };
 };
 
@@ -63,7 +72,6 @@ var populateFilmInfo = function(film) {
   filmImg.src = film.Poster;
   filmInfoCell.appendChild(filmImg);
   filmInfoCell.appendChild(ul);
-  // populatePoster(film);
   populateMap(film);
   populateGraph(film);
 };
@@ -73,13 +81,6 @@ var populateSoundtrackInfo = function(soundtrack) {
   a.href = soundtrack.albums.items[0].external_urls.spotify;
   a.target = "_blank";
 };
-
-// var populatePoster = function(film) {
-//   var posterCell = document.getElementById('poster-cell');
-//   var filmImg = document.createElement('img');
-//   filmImg.src = film.Poster;
-//   posterCell.appendChild(filmImg);
-// }
 
 var populateMap = function(film) {
   var mapCell = document.getElementById('map-cell');
@@ -100,5 +101,12 @@ var populateGraph = function(film) {
   new ColumnChart('column', 'Film IMDB Rating', filmRating, [{y: filmRating}],
     [film.Title], film.imdbRating);
 };
+
+var top10Array = [
+  {Title: "Amelie", imdbCode: "tt0211915"},
+  {Title: "Lock Stock & Two Smoking Barrels", imdbCode: "tt0120735"},
+  {Title: "Volver", imdbCode: "tt0441909"},
+  {Title: "The Shawshank Redemption", imdbCode: "tt0111161"},
+  ]
 
 window.onload = app;
